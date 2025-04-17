@@ -9,62 +9,104 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section with Parallax Effect */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background with parallax effect */}
+        {/* Background with subtle gradient */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 to-background/40 z-10" />
-          <Image
-            src="/images/placeholders/hero-bg.jpg"
-            alt="Background"
-            fill
-            className="object-cover"
-            priority
-          />
+          <div className="absolute inset-0 bg-[url('/images/placeholders/hero-bg.jpg')] bg-cover bg-center opacity-20" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-6"
-          >
-            <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-              Developer & Teacher
-            </span>
-          </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left side: Photo */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              {/* Main photo with decorative elements */}
+              <div className="relative">
+                {/* Decorative circle behind the photo */}
+                <div className="absolute -inset-4 bg-primary/10 rounded-full blur-xl"></div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl sm:text-6xl font-bold text-charcoal mb-6"
-          >
-            Where Code Meets <span className="text-primary">Creativity</span>
-          </motion.h1>
+                {/* Main photo */}
+                <div className="relative w-96 h-96 mx-auto lg:mx-0 rounded-full overflow-hidden border-4 border-white shadow-2xl">
+                  <Image
+                    src="/images/hero/lei.JPG"
+                    alt="Lei - Developer & Teacher"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl sm:text-2xl text-charcoal/80 mb-8 max-w-3xl mx-auto"
-          >
-            Transforming ideas into reality through code, teaching, and creative
-            problem-solving
-          </motion.p>
+                {/* Role badges below the photo */}
+                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
+                  <span className="px-4 py-1 bg-white rounded-full text-sm font-medium shadow-md flex items-center">
+                    <span className="text-xl mr-2">👩‍💻</span> Web Developer
+                  </span>
+                  <span className="px-4 py-1 bg-primary text-white rounded-full text-sm font-medium shadow-md flex items-center">
+                    <span className="text-xl mr-2">👩‍🏫</span> Teacher
+                  </span>
+                  <span className="px-4 py-1 bg-white rounded-full text-sm font-medium shadow-md flex items-center">
+                    <span className="text-xl mr-2">🧩</span> Puzzle Lover
+                  </span>
+                </div>
+              </div>
+            </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <Link href="/projects" className="btn btn-primary">
-              View Projects
-            </Link>
-            <Link href="/about" className="btn btn-outline">
-              Learn More
-            </Link>
-          </motion.div>
+            {/* Right side: Text content */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-center lg:text-left"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="mb-6"
+              >
+                <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+                  Welcome to my portfolio
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-4xl sm:text-6xl font-bold text-charcoal mb-6"
+              >
+                Hi, I&apos;m Lei 👋
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="text-xl sm:text-2xl text-charcoal/80 mb-8 max-w-3xl mx-auto lg:mx-0"
+              >
+                I combine my passion for coding and teaching to create
+                meaningful experiences and solutions.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              >
+                <Link href="/playground" className="btn btn-primary">
+                  Explore Playground 🎮
+                </Link>
+                <Link href="/projects" className="btn btn-outline">
+                  See My Work 💼
+                </Link>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
 
         {/* Scroll indicator */}
@@ -234,10 +276,10 @@ export default function Home() {
               </p>
               <ul className="space-y-3 mb-8">
                 {[
+                  "Spot the Difference game",
                   "Code-based quiz with increasing difficulty",
                   "Find the bug challenge",
                   "Crossword or trivia about coding",
-                  "Teacher vs. Developer puzzle duel",
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -273,30 +315,32 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 
-                {/* Floating elements */}
-                <motion.div
-                  className="absolute top-10 left-10 bg-white p-4 rounded-lg shadow-lg"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
-                >
-                  <div className="text-sm font-mono">
-                    const challenge = &quot;Find the bug&quot;;
+                {/* Game preview */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+                    <h3 className="text-xl font-bold text-charcoal mb-2">
+                      Spot the Difference
+                    </h3>
+                    <p className="text-charcoal/70 mb-4">
+                      Find all 5 differences between these two images. Click on
+                      the differences you find!
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center">
+                        <span className="text-primary font-medium mr-2">
+                          Found: 0/5
+                        </span>
+                        <span className="text-charcoal/70">Time: 60s</span>
+                      </div>
+                      <Link
+                        href="/playground"
+                        className="btn btn-primary btn-sm"
+                      >
+                        Play Now
+                      </Link>
+                    </div>
                   </div>
-                </motion.div>
-
-                <motion.div
-                  className="absolute bottom-20 right-10 bg-primary text-white p-4 rounded-lg shadow-lg"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ repeat: Infinity, duration: 3, delay: 1 }}
-                >
-                  <div className="text-sm font-mono">
-                    function solve() {`{`}
-                  </div>
-                  <div className="text-sm font-mono ml-4">
-                    return &quot;Success!&quot;;
-                  </div>
-                  <div className="text-sm font-mono">{`}`}</div>
-                </motion.div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -328,7 +372,7 @@ export default function Home() {
                 description:
                   "A web application for teaching programming concepts through interactive exercises",
                 tags: ["React", "Node.js", "MongoDB"],
-                image: "/images/placeholders/project1.jpg",
+                image: "/images/hero/lei.JPG",
                 badge: "Most Fun to Build",
               },
               {
@@ -336,7 +380,7 @@ export default function Home() {
                 description:
                   "A game designed to teach coding principles to beginners in an engaging way",
                 tags: ["JavaScript", "Canvas", "Web Audio API"],
-                image: "/images/placeholders/project2.jpg",
+                image: "/images/hero/lei.JPG",
                 badge: "Most Challenging",
               },
             ].map((project, index) => (
