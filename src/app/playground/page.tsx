@@ -3,12 +3,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SlidingPuzzle from "@/components/SlidingPuzzle";
-import SpotTheDifference from "@/components/SpotTheDifference";
+import MemoryGame from "@/components/MemoryGame";
 
 const Playground: React.FC = () => {
-  const [activeGame, setActiveGame] = useState<"puzzle" | "spot-difference">(
-    "puzzle"
-  );
+  const [activeGame, setActiveGame] = useState<"puzzle" | "memory">("puzzle");
 
   return (
     <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
@@ -40,14 +38,14 @@ const Playground: React.FC = () => {
             Sliding Puzzle
           </button>
           <button
-            onClick={() => setActiveGame("spot-difference")}
+            onClick={() => setActiveGame("memory")}
             className={`px-6 py-3 rounded-lg font-medium transition-colors ${
-              activeGame === "spot-difference"
+              activeGame === "memory"
                 ? "bg-primary text-white"
                 : "bg-charcoal/5 text-charcoal/70 hover:bg-charcoal/10"
             }`}
           >
-            Spot the Difference
+            Memory Game
           </button>
         </div>
 
@@ -74,13 +72,14 @@ const Playground: React.FC = () => {
           ) : (
             <div>
               <h2 className="text-2xl font-bold text-charcoal mb-4">
-                Spot the Difference
+                Memory Game
               </h2>
               <p className="text-charcoal/70 mb-8">
-                Test your attention to detail! Find all the differences between
-                the two images. Click on each difference you spot to mark it.
+                Test your memory with this programming-themed card matching
+                game! Find pairs of matching cards while learning about
+                different programming concepts.
               </p>
-              <SpotTheDifference />
+              <MemoryGame />
             </div>
           )}
         </motion.div>
