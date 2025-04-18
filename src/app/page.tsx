@@ -176,7 +176,7 @@ export default function Home() {
                   "Creating responsive, accessible, and performant web applications",
                 icon: "💻",
                 color: "bg-sky/10",
-                image: "/images/placeholders/web-dev.jpg",
+                image: "/images/hero/lei-coding.jpg",
               },
               {
                 title: "Teaching",
@@ -184,15 +184,15 @@ export default function Home() {
                   "Sharing knowledge and inspiring the next generation of developers",
                 icon: "📚",
                 color: "bg-primary/10",
-                image: "/images/placeholders/teaching.jpg",
+                image: "/images/hero/lei-teaching.jpg",
               },
               {
-                title: "Creative Projects",
+                title: "Everything in Between",
                 description:
                   "Building interactive experiences that engage and delight users",
                 icon: "🎨",
                 color: "bg-coral/10",
-                image: "/images/placeholders/creative.jpg",
+                image: "/images/hero/another-lei.jpg",
               },
             ].map((item, index) => (
               <motion.div
