@@ -31,6 +31,7 @@ export default function MemoryGame() {
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
 
   // Set isClient to true when component mounts
   useEffect(() => {
@@ -56,22 +57,41 @@ export default function MemoryGame() {
       [cardPairs[i], cardPairs[j]] = [cardPairs[j], cardPairs[i]];
     }
 
-    setCards(cardPairs);
-    setFlippedIndices([]);
+    // Reset all game state
+    setGameComplete(false);
     setMatchedPairs(0);
     setMoves(0);
-    setGameComplete(false);
+    setFlippedIndices([]);
+    setCards(cardPairs);
     setGameStarted(true);
+    setIsResetting(false);
+  };
+
+  // Handle reset/play again
+  const handleReset = () => {
+    setIsResetting(true);
+    setGameStarted(false);
+    setGameComplete(false);
+
+    // Reset all cards to face down
+    setCards((prevCards) =>
+      prevCards.map((card) => ({
+        ...card,
+        isFlipped: false,
+        isMatched: false,
+      }))
+    );
+
+    // Wait for flip animation to complete before reshuffling
+    setTimeout(() => {
+      initializeGame();
+    }, 600);
   };
 
   // Handle card click
   const handleCardClick = (index: number) => {
-    // Ignore clicks if:
-    // 1. The same card is clicked again
-    // 2. Two cards are already flipped
-    // 3. The card is already matched
-    // 4. The game hasn't started
     if (
+      isResetting ||
       flippedIndices.includes(index) ||
       flippedIndices.length === 2 ||
       cards[index].isMatched ||
@@ -123,7 +143,6 @@ export default function MemoryGame() {
     }
   };
 
-  // Don't render until client-side
   if (!isClient) {
     return null;
   }
@@ -138,7 +157,7 @@ export default function MemoryGame() {
             and find its matching pair!
           </p>
 
-          {!gameStarted ? (
+          {!gameStarted && !isResetting ? (
             <div className="text-center py-8">
               <p className="text-lg mb-4">Ready to test your memory?</p>
               <button
@@ -158,8 +177,13 @@ export default function MemoryGame() {
                   <span className="text-charcoal/70">Moves: {moves}</span>
                 </div>
                 <button
-                  onClick={initializeGame}
-                  className="px-4 py-2 bg-charcoal/10 text-charcoal rounded-lg hover:bg-charcoal/20 transition-colors"
+                  onClick={handleReset}
+                  disabled={isResetting}
+                  className={`px-4 py-2 rounded-lg transition-colors ${
+                    isResetting
+                      ? "bg-charcoal/5 text-charcoal/40 cursor-not-allowed"
+                      : "bg-charcoal/10 text-charcoal hover:bg-charcoal/20"
+                  }`}
                 >
                   Reset
                 </button>
@@ -170,11 +194,15 @@ export default function MemoryGame() {
                   <motion.div
                     key={card.id}
                     className={`aspect-square cursor-pointer perspective-1000 ${
-                      flippedIndices.length === 2 ? "pointer-events-none" : ""
+                      flippedIndices.length === 2 || isResetting
+                        ? "pointer-events-none"
+                        : ""
                     }`}
                     onClick={() => handleCardClick(index)}
                     whileHover={
-                      card.isMatched || flippedIndices.length === 2
+                      card.isMatched ||
+                      flippedIndices.length === 2 ||
+                      isResetting
                         ? {}
                         : { scale: 1.05 }
                     }
@@ -228,8 +256,13 @@ export default function MemoryGame() {
                     You completed the game in {moves} moves!
                   </p>
                   <button
-                    onClick={initializeGame}
-                    className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+                    onClick={handleReset}
+                    disabled={isResetting}
+                    className={`px-6 py-3 rounded-lg transition-colors ${
+                      isResetting
+                        ? "bg-primary/50 text-white/70 cursor-not-allowed"
+                        : "bg-primary text-white hover:bg-primary/90"
+                    }`}
                   >
                     Play Again
                   </button>
