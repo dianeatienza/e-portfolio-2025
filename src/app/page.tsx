@@ -271,15 +271,15 @@ export default function Home() {
                 Interactive Playground
               </h2>
               <p className="text-charcoal/70 mb-6">
-                Try out some fun coding challenges and games. Test your
-                knowledge, solve puzzles, and learn something new!
+                Enjoy a collection of engaging puzzle and word games! Challenge
+                yourself with our interactive games designed to entertain and
+                delight.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  "Spot the Difference game",
-                  "Code-based quiz with increasing difficulty",
-                  "Find the bug challenge",
-                  "Crossword or trivia about coding",
+                  "Sliding Puzzle - Arrange the tiles to complete the image",
+                  "Memory Game - Match programming concept cards",
+                  "Word Search - Find tech-related words in the grid",
                 ].map((item, index) => (
                   <motion.li
                     key={index}
@@ -289,7 +289,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     className="flex items-start"
                   >
-                    <span className="text-primary mr-2">✓</span>
+                    <span className="text-primary mr-2">🎮</span>
                     <span>{item}</span>
                   </motion.li>
                 ))}
@@ -319,18 +319,18 @@ export default function Home() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-white/90 backdrop-blur-sm p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
                     <h3 className="text-xl font-bold text-charcoal mb-2">
-                      Spot the Difference
+                      Fun & Games
                     </h3>
                     <p className="text-charcoal/70 mb-4">
-                      Find all 5 differences between these two images. Click on
-                      the differences you find!
+                      Take a break and have some fun! Solve image puzzles, test
+                      your memory with matching cards, and hunt for words in our
+                      interactive games collection.
                     </p>
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center">
-                        <span className="text-primary font-medium mr-2">
-                          Found: 0/5
-                        </span>
-                        <span className="text-charcoal/70">Time: 60s</span>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-primary">🧩</span>
+                        <span className="text-primary">🎴</span>
+                        <span className="text-primary">📝</span>
                       </div>
                       <Link
                         href="/playground"

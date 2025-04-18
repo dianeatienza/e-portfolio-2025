@@ -4,9 +4,12 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import SlidingPuzzle from "@/components/SlidingPuzzle";
 import MemoryGame from "@/components/MemoryGame";
+import WordSearch from "@/components/WordSearch";
 
 const Playground: React.FC = () => {
-  const [activeGame, setActiveGame] = useState<"puzzle" | "memory">("puzzle");
+  const [activeGame, setActiveGame] = useState<
+    "puzzle" | "memory" | "wordsearch"
+  >("puzzle");
 
   return (
     <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
@@ -26,7 +29,7 @@ const Playground: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="flex justify-center gap-4 mb-8">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
           <button
             onClick={() => setActiveGame("puzzle")}
             className={`px-6 py-3 rounded-lg font-medium transition-colors ${
@@ -46,6 +49,16 @@ const Playground: React.FC = () => {
             }`}
           >
             Memory Game
+          </button>
+          <button
+            onClick={() => setActiveGame("wordsearch")}
+            className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+              activeGame === "wordsearch"
+                ? "bg-primary text-white"
+                : "bg-charcoal/5 text-charcoal/70 hover:bg-charcoal/10"
+            }`}
+          >
+            Word Search
           </button>
         </div>
 
@@ -69,7 +82,7 @@ const Playground: React.FC = () => {
               </p>
               <SlidingPuzzle />
             </div>
-          ) : (
+          ) : activeGame === "memory" ? (
             <div>
               <h2 className="text-2xl font-bold text-charcoal mb-4">
                 Memory Game
@@ -80,6 +93,19 @@ const Playground: React.FC = () => {
                 different programming concepts.
               </p>
               <MemoryGame />
+            </div>
+          ) : (
+            <div>
+              <h2 className="text-2xl font-bold text-charcoal mb-4">
+                Word Search
+              </h2>
+              <p className="text-charcoal/70 mb-8">
+                Find tech-related words hidden in this 15x15 grid! Click and
+                drag to select letters. Words can be found horizontally,
+                vertically, and diagonally in any direction. Challenge yourself
+                to find all the programming terms!
+              </p>
+              <WordSearch />
             </div>
           )}
         </motion.div>

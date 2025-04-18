@@ -8,27 +8,27 @@ export default function WebDevelopment() {
   const categories = [
     {
       title: "Projects",
-      description: "Web applications and solutions I&apos;ve built",
-      icon: "💻",
+      description: "Web applications and solutions I've built",
+      icon: "",
       path: "/projects",
       color: "bg-sky/10",
-      image: "/images/placeholders/web-dev.jpg",
+      image: "/images/projects/web-development-projects.webp  ",
     },
     {
       title: "Playground",
       description: "Interactive coding challenges and games",
-      icon: "🎮",
+      icon: "",
       path: "/playground",
       color: "bg-primary/10",
-      image: "/images/placeholders/playground.jpg",
+      image: "/images/projects/playground.webp",
     },
     {
-      title: "Blog",
+      title: "Skills",
       description: "Thoughts and insights on web development",
-      icon: "📝",
+      icon: "",
       path: "/blog",
       color: "bg-coral/10",
-      image: "/images/placeholders/creative.jpg",
+      image: "/images/projects/skills.webp",
     },
   ];
 
