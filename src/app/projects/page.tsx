@@ -16,10 +16,10 @@ const projects = [
     longDescription:
       "This weather application provides users with real-time weather information based on their location. It features a clean, minimalist design with animated weather icons that change based on current conditions. The app integrates with an open weather API to fetch accurate data and includes features like hourly forecasts, weekly predictions, and location-based weather alerts.",
     tags: ["React", "API Integration", "CSS Animations", "Geolocation"],
-    image: "/images/placeholders/weather-app.jpg",
-    demoLink: "#",
-    githubLink: "#",
-    featured: true,
+    image: "/images/cover-photos/weather-app.webp",
+    demoLink: "https://dianeatienza.github.io/weather-app/",
+    githubLink: "https://github.com/dianeatienza/weather-app",
+    featured: false,
   },
   {
     id: 2,
@@ -29,10 +29,10 @@ const projects = [
     longDescription:
       "Movie Landia is a comprehensive movie discovery platform that allows users to search for films, view detailed information, and watch trailers. The application features a responsive grid UI that adapts to different screen sizes, genre-based filtering for easy navigation, and integration with a public movie API for up-to-date information. Users can create watchlists, rate movies, and share their favorites with friends.",
     tags: ["Next.js", "TMDB API", "Tailwind CSS", "Responsive Design"],
-    image: "/images/placeholders/movie-landia.jpg",
-    demoLink: "#",
-    githubLink: "#",
-    featured: true,
+    image: "/images/cover-photos/movie-landia.webp",
+    demoLink: "https://dianeatienza.github.io/movie-land-reactjs/",
+    githubLink: "https://github.com/dianeatienza/movie-land-reactjs",
+    featured: false,
   },
   {
     id: 3,
@@ -42,9 +42,9 @@ const projects = [
     longDescription:
       "This e-commerce platform provides a complete shopping experience with product listings, detailed product pages, shopping cart functionality, and a streamlined checkout process. The platform includes features like product filtering, search functionality, user accounts, order history, and payment simulation. The design focuses on creating a seamless browsing experience that maximizes conversion rates.",
     tags: ["React", "Redux", "Node.js", "MongoDB", "Stripe API"],
-    image: "/images/placeholders/ecommerce.jpg",
-    demoLink: "#",
-    githubLink: "#",
+    image: "/images/cover-photos/ecommerce.png",
+    demoLink: "https://e-commerce-5b1hhoqf5-leis-projects-aa182d64.vercel.app/",
+    githubLink: "https://github.com/dianeatienza/e-commerce-api",
     featured: true,
   },
   {
@@ -55,23 +55,23 @@ const projects = [
     longDescription:
       "Lexy is an AI-powered English tutor that engages users in natural conversations to help them practice and improve their English skills. The application uses advanced NLP tools to analyze user responses, provide grammar corrections, suggest vocabulary improvements, and offer conversation prompts. It adapts to the user's proficiency level and focuses on areas that need improvement, making language learning more interactive and effective.",
     tags: ["Python", "NLP", "Machine Learning", "WebSocket", "React"],
-    image: "/images/placeholders/lexy-ai.jpg",
-    demoLink: "#",
-    githubLink: "#",
+    image: "/images/cover-photos/lexy-ai.webp",
+    demoLink: "https://lexyapp.ai/",
+    githubLink: "https://lexyapp.ai/",
     featured: false,
   },
   {
     id: 5,
-    title: "📝 LexScribe – Transcription Software",
+    title: "📝 LexCoder – Transcription Software",
     description:
       "Converts recorded audio into accurate, editable text. Ideal for interviews, podcasts, and lectures. Supports speaker detection and timestamping.",
     longDescription:
-      "LexScribe is a powerful transcription tool that converts audio recordings into accurate, editable text. It's designed for journalists, researchers, content creators, and anyone who needs to transcribe interviews, podcasts, or lectures. The software features speaker detection to differentiate between multiple voices, automatic timestamping for easy reference, and editing tools to correct and format the transcribed text. It supports multiple languages and various audio formats.",
+      "LexCoder is a powerful transcription tool that converts audio recordings into accurate, editable text. It's designed for journalists, researchers, content creators, and anyone who needs to transcribe interviews, podcasts, or lectures. The software features speaker detection to differentiate between multiple voices, automatic timestamping for easy reference, and editing tools to correct and format the transcribed text. It supports multiple languages and various audio formats.",
     tags: ["Python", "Speech Recognition", "Web Audio API", "React", "Node.js"],
-    image: "/images/placeholders/lexscribe.jpg",
-    demoLink: "#",
-    githubLink: "#",
-    featured: false,
+    image: "/images/cover-photos/lexscribe.webp",
+    demoLink: "https://lexcoder.ddns.net/",
+    githubLink: "https://lexcoder.ddns.net/",
+    featured: true,
   },
   {
     id: 6,
@@ -87,10 +87,10 @@ const projects = [
       "Vue.js",
       "Node.js",
     ],
-    image: "/images/placeholders/qurious.jpg",
-    demoLink: "#",
-    githubLink: "#",
-    featured: false,
+    image: "/images/cover-photos/qurious.webp",
+    demoLink: "https://qurious.eqqui.com/",
+    githubLink: "https://qurious.eqqui.com/",
+    featured: true,
   },
   {
     id: 7,
@@ -100,9 +100,9 @@ const projects = [
     longDescription:
       "eQQuip Me is an interactive chatbot designed to streamline the process of obtaining interpretation service quotations. It engages users in a conversational manner to understand their requirements, provides information about available services and pricing, and collects necessary details for booking. The chatbot can handle complex queries, offer personalized recommendations, and seamlessly transfer users to human agents when needed. It's designed to improve customer experience and increase conversion rates.",
     tags: ["Dialogflow", "Node.js", "React", "API Integration", "NLP"],
-    image: "/images/placeholders/eqquip-me.jpg",
-    demoLink: "#",
-    githubLink: "#",
+    image: "/images/cover-photos/eqquip-me.webp",
+    demoLink: "https://eqquipme.lexcode.com/",
+    githubLink: "https://lexcode-ph.ddns.net/eqquipme/",
     featured: false,
   },
   {
@@ -119,9 +119,9 @@ const projects = [
       "SEO",
       "Responsive Design",
     ],
-    image: "/images/placeholders/lexcode-portfolio.jpg",
-    demoLink: "#",
-    githubLink: "#",
+    image: "/images/cover-photos/lexcode-portfolio.webp",
+    demoLink: "https://ph.lexcode.com/",
+    githubLink: "https://ph.lexcode.com/",
     featured: false,
   },
 ];
@@ -279,6 +279,8 @@ const Projects: React.FC = () => {
                   <div className="flex justify-between mt-auto">
                     <Link
                       href={project.demoLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-primary hover:text-primary/80 font-medium text-sm flex items-center"
                     >
                       <span>View Demo</span>
@@ -299,6 +301,8 @@ const Projects: React.FC = () => {
                     </Link>
                     <Link
                       href={project.githubLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="text-charcoal/70 hover:text-charcoal font-medium text-sm flex items-center"
                     >
                       <span>GitHub</span>
@@ -335,12 +339,16 @@ const Projects: React.FC = () => {
                     <div className="mt-auto flex justify-between">
                       <Link
                         href={project.demoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
                       >
                         View Demo
                       </Link>
                       <Link
                         href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="bg-white/10 text-white px-4 py-2 rounded-lg hover:bg-white/20 transition-colors"
                       >
                         GitHub
