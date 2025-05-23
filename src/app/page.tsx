@@ -43,13 +43,13 @@ export default function Home() {
                 {/* Role badges below the photo */}
                 <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl mr-2">W</span> Web Developer
+                    <span className="text-xl mr-2"></span> Web Developer
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl mr-2">T</span> Teacher
+                    <span className="text-xl mr-2">|</span> Teacher
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl mr-2">P</span> Puzzle Lover
+                    <span className="text-xl mr-2">|</span> Puzzle Lover
                   </div>
                 </div>
               </div>
