@@ -41,14 +41,14 @@ const SlidingPuzzle: React.FC = () => {
   const GRID_SIZE = GRID_SIZES[difficulty];
   const TOTAL_TILES = GRID_SIZE * GRID_SIZE;
 
-  useEffect(() => {
-    initializePuzzle();
-  }, [difficulty, currentImage]);
-
   const initializePuzzle = () => {
     const initialTiles = Array.from({ length: TOTAL_TILES }, (_, i) => i);
     shuffleTiles(initialTiles);
   };
+
+  useEffect(() => {
+    initializePuzzle();
+  }, [difficulty, currentImage, initializePuzzle]);
 
   const shuffleTiles = (tiles: number[]) => {
     const shuffled = [...tiles];

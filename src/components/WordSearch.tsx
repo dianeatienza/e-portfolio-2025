@@ -130,14 +130,14 @@ const WordSearch: React.FC = () => {
           dx > 0
             ? GRID_SIZE - word.length
             : dx < 0
-            ? word.length - 1
-            : GRID_SIZE - 1;
+              ? word.length - 1
+              : GRID_SIZE - 1;
         const maxY =
           dy > 0
             ? GRID_SIZE - word.length
             : dy < 0
-            ? word.length - 1
-            : GRID_SIZE - 1;
+              ? word.length - 1
+              : GRID_SIZE - 1;
         const minX = dx < 0 ? word.length - 1 : 0;
         const minY = dy < 0 ? word.length - 1 : 0;
 
@@ -255,7 +255,14 @@ const WordSearch: React.FC = () => {
         </div>
       ))
     );
-  }, [grid, selectedCells]);
+  }, [
+    grid,
+    selectedCells,
+    handleMouseDown,
+    handleMouseEnter,
+    handleMouseUp,
+    isCellSelected,
+  ]);
 
   // Memoize the word list rendering
   const wordList = useMemo(() => {
@@ -292,7 +299,7 @@ const WordSearch: React.FC = () => {
               Congratulations! 🎉
             </h2>
             <p className="text-gray-600 dark:text-gray-300">
-              You've found all the words!
+              You&apos;ve found all the words!
             </p>
             <p className="text-gray-600 dark:text-gray-300">
               Final Score: {score}

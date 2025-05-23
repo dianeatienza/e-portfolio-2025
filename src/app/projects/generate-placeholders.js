@@ -1,9 +1,9 @@
 // This is a script to generate placeholder images for the projects
 // You can run this with Node.js to create placeholder images
 
-const fs = require('fs');
-const path = require('path');
-const { createCanvas } = require('canvas');
+import fs from 'fs';
+import path from 'path';
+import { createCanvas } from 'canvas';
 
 // Project images to generate
 const projects = [
