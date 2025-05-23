@@ -182,7 +182,7 @@ export default function Home() {
                   "Creating responsive, accessible, and performant web applications",
                 icon: "💻",
                 color: "bg-sky/10",
-                image: "/images/hero/lei-coding.jpg",
+                image: "/images/hero/lei-coding.JPG",
               },
               {
                 title: "Teaching",
@@ -190,7 +190,7 @@ export default function Home() {
                   "Sharing knowledge and inspiring the next generation of developers",
                 icon: "📚",
                 color: "bg-primary/10",
-                image: "/images/hero/lei-teaching.jpg",
+                image: "/images/hero/lei-teaching.JPG",
               },
               {
                 title: "Everything in Between",
