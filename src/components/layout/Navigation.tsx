@@ -32,8 +32,10 @@ const navCategories: NavCategory[] = [
     isDirectLink: false,
     description: "Learn more about me and my background",
     items: [
+      { name: "My Story", path: "/about#my-story" },
       { name: "Work Experience", path: "/about#work-experience" },
       { name: "Educational Background", path: "/about#education" },
+      { name: "Awards & Certificates", path: "/about#awards" },
       { name: "Fun Facts", path: "/about#fun-facts" },
     ],
   },
@@ -46,7 +48,6 @@ const navCategories: NavCategory[] = [
       { name: "Projects", path: "/projects" },
       { name: "Interactive Playground", path: "/playground" },
       { name: "Skills", path: "/web-development#skills" },
-      { name: "Certificates", path: "/web-development#certificates" },
     ],
   },
   {
@@ -54,10 +55,7 @@ const navCategories: NavCategory[] = [
     path: "/teaching",
     isDirectLink: false,
     description: "Teaching in schools and cruise ships",
-    items: [
-      { name: "Skills", path: "/teaching#skills" },
-      { name: "Certificates", path: "/teaching#certificates" },
-    ],
+    items: [{ name: "Skills", path: "/teaching#skills" }],
   },
   {
     name: "Life & Experiences",

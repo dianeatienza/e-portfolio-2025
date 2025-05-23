@@ -15,7 +15,7 @@ const projects = [
       "A clean, minimalist app that gives real-time weather updates based on location. Integrated with an open weather API and includes animated icons.",
     longDescription:
       "This weather application provides users with real-time weather information based on their location. It features a clean, minimalist design with animated weather icons that change based on current conditions. The app integrates with an open weather API to fetch accurate data and includes features like hourly forecasts, weekly predictions, and location-based weather alerts.",
-    tags: ["React", "API Integration", "CSS Animations", "Geolocation"],
+    tags: ["React", "API Integration", "Geolocation"],
     image: "/images/cover-photos/weather-app.webp",
     demoLink: "https://dianeatienza.github.io/weather-app/",
     githubLink: "https://github.com/dianeatienza/weather-app",
@@ -28,7 +28,7 @@ const projects = [
       "A searchable movie catalog that fetches movie details using a public movie API. Features genre filtering, watch trailers, and a responsive grid UI.",
     longDescription:
       "Movie Landia is a comprehensive movie discovery platform that allows users to search for films, view detailed information, and watch trailers. The application features a responsive grid UI that adapts to different screen sizes, genre-based filtering for easy navigation, and integration with a public movie API for up-to-date information. Users can create watchlists, rate movies, and share their favorites with friends.",
-    tags: ["Next.js", "TMDB API", "Tailwind CSS", "Responsive Design"],
+    tags: ["React", "TMDB API", "CSS", "Responsive Design"],
     image: "/images/cover-photos/movie-landia.webp",
     demoLink: "https://dianeatienza.github.io/movie-land-reactjs/",
     githubLink: "https://github.com/dianeatienza/movie-land-reactjs",
@@ -54,7 +54,17 @@ const projects = [
       "A conversational AI that helps users practice English. Built with NLP tools, it provides feedback, grammar suggestions, and casual conversation prompts.",
     longDescription:
       "Lexy is an AI-powered English tutor that engages users in natural conversations to help them practice and improve their English skills. The application uses advanced NLP tools to analyze user responses, provide grammar corrections, suggest vocabulary improvements, and offer conversation prompts. It adapts to the user's proficiency level and focuses on areas that need improvement, making language learning more interactive and effective.",
-    tags: ["Python", "NLP", "Machine Learning", "WebSocket", "React"],
+    tags: [
+      "Python",
+      "NLP",
+      "Machine Learning",
+      "Firebase",
+      "Redux",
+      "Ionic",
+      "React",
+      "CSS",
+      "Responsive Design",
+    ],
     image: "/images/cover-photos/lexy-ai.webp",
     demoLink: "https://lexyapp.ai/",
     githubLink: "https://lexyapp.ai/",
@@ -67,7 +77,15 @@ const projects = [
       "Converts recorded audio into accurate, editable text. Ideal for interviews, podcasts, and lectures. Supports speaker detection and timestamping.",
     longDescription:
       "LexCoder is a powerful transcription tool that converts audio recordings into accurate, editable text. It's designed for journalists, researchers, content creators, and anyone who needs to transcribe interviews, podcasts, or lectures. The software features speaker detection to differentiate between multiple voices, automatic timestamping for easy reference, and editing tools to correct and format the transcribed text. It supports multiple languages and various audio formats.",
-    tags: ["Python", "Speech Recognition", "Web Audio API", "React", "Node.js"],
+    tags: [
+      "Python",
+      "Speech Recognition",
+      "Web Audio API",
+      "Firebase",
+      "TypeScript",
+      "Nextjs",
+      "Responsive Design",
+    ],
     image: "/images/cover-photos/lexscribe.webp",
     demoLink: "https://lexcoder.ddns.net/",
     githubLink: "https://lexcoder.ddns.net/",
@@ -81,11 +99,15 @@ const projects = [
     longDescription:
       "Qurious is a comprehensive platform for real-time transcription and translation at live events. It enables event organizers to provide multilingual support to attendees through AI-powered voice translation. The platform includes features for speakers to deliver content in their preferred language, interpreters to provide real-time translations, and participants to select their preferred language for audio output. It's designed for conferences, international meetings, and educational events.",
     tags: [
-      "WebRTC",
       "AI Voice Synthesis",
       "Real-time Processing",
-      "Vue.js",
-      "Node.js",
+      "WebSocket",
+      "TypeScript",
+      "Python",
+      "NLP",
+      "Vite",
+      "Machine Learning",
+      "Responsive Design",
     ],
     image: "/images/cover-photos/qurious.webp",
     demoLink: "https://qurious.eqqui.com/",
@@ -99,7 +121,14 @@ const projects = [
       "A friendly assistant that guides users through interpretation service quotations. Handles pricing, service types, and collects booking details interactively.",
     longDescription:
       "eQQuip Me is an interactive chatbot designed to streamline the process of obtaining interpretation service quotations. It engages users in a conversational manner to understand their requirements, provides information about available services and pricing, and collects necessary details for booking. The chatbot can handle complex queries, offer personalized recommendations, and seamlessly transfer users to human agents when needed. It's designed to improve customer experience and increase conversion rates.",
-    tags: ["Dialogflow", "Node.js", "React", "API Integration", "NLP"],
+    tags: [
+      "Node.js",
+      "React",
+      "API Integration",
+      "NLP",
+      "Responsive Design",
+      "SMTP",
+    ],
     image: "/images/cover-photos/eqquip-me.webp",
     demoLink: "https://eqquipme.lexcode.com/",
     githubLink: "https://lexcode-ph.ddns.net/eqquipme/",
@@ -112,13 +141,7 @@ const projects = [
       "A modern, mobile-first website showcasing Lexcode Philippines' services, team, and case studies. Built for performance and clear brand storytelling.",
     longDescription:
       "The PH.Lexcode Company Portfolio is a modern, mobile-first website designed to showcase Lexcode Philippines' services, team members, and case studies. The website features a clean, professional design that reflects the company's brand identity and values. It includes sections for service descriptions, team member profiles, client testimonials, and detailed case studies. The site is optimized for performance, accessibility, and search engines, ensuring a positive user experience across all devices.",
-    tags: [
-      "Next.js",
-      "Tailwind CSS",
-      "Framer Motion",
-      "SEO",
-      "Responsive Design",
-    ],
+    tags: ["Wordpress", "Pantheon", "Elementor", "SEO", "Responsive Design"],
     image: "/images/cover-photos/lexcode-portfolio.webp",
     demoLink: "https://ph.lexcode.com/",
     githubLink: "https://ph.lexcode.com/",
@@ -156,7 +179,9 @@ const Projects: React.FC = () => {
   const filteredProjects =
     filter === "all"
       ? projects
-      : projects.filter((project) => project.featured);
+      : filter === "featured"
+      ? projects.filter((project) => project.featured)
+      : projects.filter((project) => project.tags.includes(filter));
 
   // Get all unique tags
   const allTags = Array.from(

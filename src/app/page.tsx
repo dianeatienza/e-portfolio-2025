@@ -219,7 +219,11 @@ export default function Home() {
                   <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                   <p className="text-charcoal/70 mb-4">{item.description}</p>
                   <Link
-                    href={`/${item.title.toLowerCase().replace(" ", "-")}`}
+                    href={
+                      item.title === "Everything in Between"
+                        ? "/everything-in-between"
+                        : `/${item.title.toLowerCase().replace(" ", "-")}`
+                    }
                     className="text-primary hover:text-primary/80 transition-colors inline-flex items-center"
                   >
                     Learn more
@@ -308,7 +312,7 @@ export default function Home() {
             >
               <div className="relative h-[400px] rounded-xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/placeholders/playground.jpg"
+                  src="/images/projects/playground.webp"
                   alt="Interactive Playground"
                   fill
                   className="object-cover"
@@ -368,20 +372,27 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "Interactive Learning Platform",
+                title: "🌍 Qurious – Real-Time AI Translation",
                 description:
-                  "A web application for teaching programming concepts through interactive exercises",
-                tags: ["React", "Node.js", "MongoDB"],
-                image: "/images/hero/lei.JPG",
+                  "A powerful web platform for live transcription and translation using AI voices. Built for event organizers, with roles for speakers, interpreters, and participants.",
+                tags: [
+                  "AI Voice Synthesis",
+                  "Real-time Processing",
+                  "WebSocket",
+                  "TypeScript",
+                ],
+                image: "/images/cover-photos/qurious.webp",
                 badge: "Most Fun to Build",
+                link: "https://qurious.eqqui.com/",
               },
               {
-                title: "Educational Game",
+                title: "🧠 Lexy – AI English Tutor",
                 description:
-                  "A game designed to teach coding principles to beginners in an engaging way",
-                tags: ["JavaScript", "Canvas", "Web Audio API"],
-                image: "/images/hero/lei.JPG",
+                  "A conversational AI that helps users practice English. Built with NLP tools, it provides feedback, grammar suggestions, and casual conversation prompts.",
+                tags: ["Python", "NLP", "Machine Learning", "Firebase"],
+                image: "/images/cover-photos/lexy-ai.webp",
                 badge: "Most Challenging",
+                link: "https://lexyapp.ai/",
               },
             ].map((project, index) => (
               <motion.div
@@ -392,43 +403,47 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
-                <div className="relative h-64 overflow-hidden">
+                <div className="relative h-80 overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/70 to-black/50" />
 
                   {project.badge && (
-                    <div className="absolute top-4 right-4 bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">
+                    <div className="absolute top-6 right-6 bg-primary text-white text-xs font-medium px-3 py-1 rounded-full shadow-lg">
                       {project.badge}
                     </div>
                   )}
 
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-xl font-semibold text-white mb-2">
+                    <h3 className="text-xl font-bold text-white mb-3">
                       {project.title}
                     </h3>
-                    <p className="text-white/80 mb-4">{project.description}</p>
+                    <p className="text-white/90 text-sm mb-4 leading-relaxed line-clamp-3">
+                      {project.description}
+                    </p>
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="bg-white/20 text-white text-xs px-2 py-1 rounded"
+                          className="bg-white/25 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
-                    <Link
-                      href="/projects"
-                      className="inline-flex items-center text-white hover:text-primary transition-colors"
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center text-white hover:text-primary transition-colors text-sm font-medium"
                     >
                       View Project
                       <svg
-                        className="w-4 h-4 ml-1"
+                        className="w-4 h-4 ml-1.5"
                         viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -448,7 +463,7 @@ export default function Home() {
                           strokeLinejoin="round"
                         />
                       </svg>
-                    </Link>
+                    </a>
                   </div>
                 </div>
               </motion.div>

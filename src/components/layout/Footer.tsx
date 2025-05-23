@@ -7,7 +7,7 @@ export default function Footer() {
   const socialLinks = [
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/yourusername",
+      url: "https://www.linkedin.com/in/lei-diane-atienza-172684272/",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -23,24 +23,12 @@ export default function Footer() {
     },
     {
       name: "Threads",
-      url: "https://threads.net/@yourusername",
-      icon: (
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-5 h-5"
-        >
-          <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.5 12.068c0-3.518.85-6.372 2.495-8.423 1.843-2.304 4.603-3.485 8.184-3.509 3.581.024 6.334 1.205 8.184 3.509C22.65 5.696 23.5 8.55 23.5 12.068c0 3.518-.85 6.372-2.495 8.423-1.843 2.304-4.603 3.485-8.184 3.509h.007zm-.007-22.5c-3.207.021-5.633 1.08-7.177 3.009C2.85 7.046 2 9.72 2 12.068c0 2.348.85 5.022 2.995 7.049 1.544 1.929 3.97 2.988 7.177 3.009 3.207-.021 5.633-1.08 7.177-3.009C21.15 17.09 22 14.416 22 12.068c0-2.348-.85-5.022-2.995-7.049-1.544-1.929-3.97-2.988-7.177-3.009z" />
-          <path d="M12.186 19.5h-.007c-2.581-.017-4.584-.87-5.934-2.509C4.85 15.44 4 13.586 4 11.068c0-2.518.85-4.372 2.245-5.923 1.35-1.639 3.353-2.492 5.934-2.509 2.581.017 4.584.87 5.934 2.509C19.15 6.696 20 8.55 20 11.068c0 2.518-.85 4.372-2.245 5.923-1.35 1.639-3.353 2.492-5.934 2.509h.007zm-.007-17.5c-2.207.014-3.883.87-4.927 2.509C5.85 6.546 5 8.22 5 10.068c0 1.848.85 3.522 2.245 4.991 1.044 1.639 2.72 2.495 4.927 2.509 2.207-.014 3.883-.87 4.927-2.509C18.15 13.59 19 11.916 19 10.068c0-1.848-.85-3.522-2.245-4.991-1.044-1.639-2.72-2.495-4.927-2.509z" />
-        </svg>
-      ),
+      url: "https://www.threads.com/@lei_diane13",
+      icon: <i className="fa-brands fa-threads w-5 h-5" />,
     },
     {
       name: "Instagram",
-      url: "https://instagram.com/yourusername",
+      url: "https://www.instagram.com/lei_diane13/",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +44,7 @@ export default function Footer() {
     },
     {
       name: "Facebook",
-      url: "https://facebook.com/yourusername",
+      url: "https://www.facebook.com/lei.diane.atienza/",
       icon: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
