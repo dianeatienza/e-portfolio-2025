@@ -173,33 +173,37 @@ const WordSearch: React.FC = () => {
     generateGrid();
   }, [generateGrid]);
 
-  const handleMouseDown = (x: number, y: number) => {
+  // Handle mouse events with useCallback
+  const handleMouseDown = useCallback((x: number, y: number) => {
     setIsSelecting(true);
     setStartCell([x, y]);
     setSelectedCells([[x, y]]);
-  };
+  }, []);
 
-  const handleMouseEnter = (x: number, y: number) => {
-    if (!isSelecting || !startCell) return;
+  const handleMouseEnter = useCallback(
+    (x: number, y: number) => {
+      if (!isSelecting || !startCell) return;
 
-    const [startX, startY] = startCell;
-    const cells: number[][] = [];
+      const [startX, startY] = startCell;
+      const cells: number[][] = [];
 
-    // Calculate the line between start and current cell
-    const dx = x - startX;
-    const dy = y - startY;
-    const steps = Math.max(Math.abs(dx), Math.abs(dy)) + 1;
+      // Calculate the line between start and current cell
+      const dx = x - startX;
+      const dy = y - startY;
+      const steps = Math.max(Math.abs(dx), Math.abs(dy)) + 1;
 
-    for (let i = 0; i < steps; i++) {
-      const cellX = startX + Math.round((dx * i) / (steps - 1));
-      const cellY = startY + Math.round((dy * i) / (steps - 1));
-      cells.push([cellX, cellY]);
-    }
+      for (let i = 0; i < steps; i++) {
+        const cellX = startX + Math.round((dx * i) / (steps - 1));
+        const cellY = startY + Math.round((dy * i) / (steps - 1));
+        cells.push([cellX, cellY]);
+      }
 
-    setSelectedCells(cells);
-  };
+      setSelectedCells(cells);
+    },
+    [isSelecting, startCell]
+  );
 
-  const handleMouseUp = () => {
+  const handleMouseUp = useCallback(() => {
     if (!isSelecting || !startCell) return;
     setIsSelecting(false);
 
@@ -229,11 +233,14 @@ const WordSearch: React.FC = () => {
 
     setSelectedCells([]);
     setStartCell(null);
-  };
+  }, [isSelecting, startCell, selectedCells, grid, foundWords]);
 
-  const isCellSelected = (x: number, y: number) => {
-    return selectedCells.some(([cellX, cellY]) => cellX === x && cellY === y);
-  };
+  const isCellSelected = useCallback(
+    (x: number, y: number) => {
+      return selectedCells.some(([cellX, cellY]) => cellX === x && cellY === y);
+    },
+    [selectedCells]
+  );
 
   // Memoize the grid rendering to improve performance
   const gridCells = useMemo(() => {
