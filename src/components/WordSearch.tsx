@@ -255,14 +255,7 @@ const WordSearch: React.FC = () => {
         </div>
       ))
     );
-  }, [
-    grid,
-    selectedCells,
-    handleMouseDown,
-    handleMouseEnter,
-    handleMouseUp,
-    isCellSelected,
-  ]);
+  }, [grid, handleMouseDown, handleMouseEnter, handleMouseUp, isCellSelected]);
 
   // Memoize the word list rendering
   const wordList = useMemo(() => {
