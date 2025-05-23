@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 type Difficulty = "easy" | "average" | "difficult";
-type PuzzleImage = "bini" | "avengers" | "one-piece" | "tangerines";
+type PuzzleImage = "bini";
 
 const GRID_SIZES: Record<Difficulty, number> = {
   easy: 3,
@@ -16,23 +15,10 @@ const PUZZLE_IMAGES: Record<PuzzleImage, { src: string; title: string }> = {
     src: "/images/playground/bini-group-photo.webp",
     title: "Bini Image",
   },
-  "one-piece": {
-    src: "/images/playground/one-piece.webp",
-    title: "One Piece",
-  },
-  avengers: {
-    src: "/images/playground/avengers.webp",
-    title: "Avengers",
-  },
-  tangerines: {
-    src: "/images/playground/tangerines.webp",
-    title: "When Life Gives You Tangerines",
-  },
 };
 
 const SlidingPuzzle: React.FC = () => {
   const [difficulty, setDifficulty] = useState<Difficulty>("easy");
-  const [currentImage, setCurrentImage] = useState<PuzzleImage>("bini");
   const [showReference, setShowReference] = useState(false);
   const [tiles, setTiles] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
@@ -40,17 +26,25 @@ const SlidingPuzzle: React.FC = () => {
 
   const GRID_SIZE = GRID_SIZES[difficulty];
   const TOTAL_TILES = GRID_SIZE * GRID_SIZE;
+  const currentImage: PuzzleImage = "bini";
 
-  const initializePuzzle = () => {
-    const initialTiles = Array.from({ length: TOTAL_TILES }, (_, i) => i);
-    shuffleTiles(initialTiles);
+  const isSolvable = (tiles: number[]): boolean => {
+    let inversions = 0;
+    const tilesWithoutEmpty = tiles.filter((tile) => tile !== 0);
+
+    for (let i = 0; i < tilesWithoutEmpty.length - 1; i++) {
+      for (let j = i + 1; j < tilesWithoutEmpty.length; j++) {
+        if (tilesWithoutEmpty[i] > tilesWithoutEmpty[j]) {
+          inversions++;
+        }
+      }
+    }
+
+    // For 3x3 puzzle, if number of inversions is even, puzzle is solvable
+    return inversions % 2 === 0;
   };
 
-  useEffect(() => {
-    initializePuzzle();
-  }, [difficulty, currentImage, initializePuzzle]);
-
-  const shuffleTiles = (tiles: number[]) => {
+  const shuffleTiles = useCallback((tiles: number[]) => {
     const shuffled = [...tiles];
     let currentIndex = shuffled.length;
 
@@ -78,23 +72,16 @@ const SlidingPuzzle: React.FC = () => {
     setTiles(shuffled);
     setMoves(0);
     setIsComplete(false);
-  };
+  }, []);
 
-  const isSolvable = (tiles: number[]): boolean => {
-    let inversions = 0;
-    const tilesWithoutEmpty = tiles.filter((tile) => tile !== 0);
+  const initializePuzzle = useCallback(() => {
+    const initialTiles = Array.from({ length: TOTAL_TILES }, (_, i) => i);
+    shuffleTiles(initialTiles);
+  }, [TOTAL_TILES, shuffleTiles]);
 
-    for (let i = 0; i < tilesWithoutEmpty.length - 1; i++) {
-      for (let j = i + 1; j < tilesWithoutEmpty.length; j++) {
-        if (tilesWithoutEmpty[i] > tilesWithoutEmpty[j]) {
-          inversions++;
-        }
-      }
-    }
-
-    // For 3x3 puzzle, if number of inversions is even, puzzle is solvable
-    return inversions % 2 === 0;
-  };
+  useEffect(() => {
+    initializePuzzle();
+  }, [difficulty, initializePuzzle]);
 
   const isAdjacent = (index1: number, index2: number): boolean => {
     const row1 = Math.floor(index1 / GRID_SIZE);
@@ -166,33 +153,6 @@ const SlidingPuzzle: React.FC = () => {
               >
                 New Game
               </button>
-            </div>
-
-            {/* Image Selector */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {(Object.keys(PUZZLE_IMAGES) as PuzzleImage[]).map((imageKey) => (
-                <button
-                  key={imageKey}
-                  onClick={() => setCurrentImage(imageKey)}
-                  className={`relative aspect-square rounded-lg overflow-hidden group ${
-                    currentImage === imageKey
-                      ? "ring-2 ring-primary ring-offset-2"
-                      : "hover:ring-2 hover:ring-charcoal/20 hover:ring-offset-2"
-                  }`}
-                >
-                  <Image
-                    src={PUZZLE_IMAGES[imageKey].src}
-                    alt={PUZZLE_IMAGES[imageKey].title}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="text-white text-sm font-medium">
-                      {PUZZLE_IMAGES[imageKey].title}
-                    </span>
-                  </div>
-                </button>
-              ))}
             </div>
           </div>
 
