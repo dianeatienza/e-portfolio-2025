@@ -7,10 +7,10 @@ import { useState, useEffect } from "react";
 
 const sections = [
   {
-    title: "Life",
+    title: "Growth",
     description:
       "Personal stories, interests, and the journey that shapes who I am",
-    icon: "🌱",
+    icon: "G",
     image: "/images/placeholders/life-section.jpg",
     subsections: [
       {

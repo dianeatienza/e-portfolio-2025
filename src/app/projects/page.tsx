@@ -10,7 +10,7 @@ import Link from "next/link";
 const projects = [
   {
     id: 1,
-    title: "💨 Weather App",
+    title: "Weather App",
     description:
       "A clean, minimalist app that gives real-time weather updates based on location. Integrated with an open weather API and includes animated icons.",
     longDescription:
@@ -23,7 +23,7 @@ const projects = [
   },
   {
     id: 2,
-    title: "🎬 Movie Landia",
+    title: "Movie Land",
     description:
       "A searchable movie catalog that fetches movie details using a public movie API. Features genre filtering, watch trailers, and a responsive grid UI.",
     longDescription:
@@ -36,7 +36,7 @@ const projects = [
   },
   {
     id: 3,
-    title: "🛒 e-Commerce Website",
+    title: "e-Commerce Website",
     description:
       "A full-fledged e-commerce platform with product listing, cart, checkout, and payment simulation. Designed for seamless browsing and conversion.",
     longDescription:
@@ -49,7 +49,7 @@ const projects = [
   },
   {
     id: 4,
-    title: "🧠 Lexy – AI English Tutor",
+    title: "Lexy – AI English Tutor",
     description:
       "A conversational AI that helps users practice English. Built with NLP tools, it provides feedback, grammar suggestions, and casual conversation prompts.",
     longDescription:
@@ -72,7 +72,7 @@ const projects = [
   },
   {
     id: 5,
-    title: "📝 LexCoder – Transcription Software",
+    title: "LexCoder – Transcription Software",
     description:
       "Converts recorded audio into accurate, editable text. Ideal for interviews, podcasts, and lectures. Supports speaker detection and timestamping.",
     longDescription:
@@ -93,7 +93,7 @@ const projects = [
   },
   {
     id: 6,
-    title: "🌍 Qurious – Real-Time AI Translation for Events",
+    title: "Qurious – Real-Time AI Translation for Events",
     description:
       "A powerful web platform for live transcription and translation using AI voices. Built for event organizers, with roles for speakers, interpreters, and participants.",
     longDescription:
@@ -116,7 +116,7 @@ const projects = [
   },
   {
     id: 7,
-    title: "🤖 eQQuip Me Chatbot",
+    title: "eQQuip Me Chatbot",
     description:
       "A friendly assistant that guides users through interpretation service quotations. Handles pricing, service types, and collects booking details interactively.",
     longDescription:
@@ -136,7 +136,7 @@ const projects = [
   },
   {
     id: 8,
-    title: "🌐 PH.Lexcode Company Portfolio",
+    title: "PH.Lexcode Company Portfolio",
     description:
       "A modern, mobile-first website showcasing Lexcode Philippines' services, team, and case studies. Built for performance and clear brand storytelling.",
     longDescription:
@@ -180,8 +180,8 @@ const Projects: React.FC = () => {
     filter === "all"
       ? projects
       : filter === "featured"
-      ? projects.filter((project) => project.featured)
-      : projects.filter((project) => project.tags.includes(filter));
+        ? projects.filter((project) => project.featured)
+        : projects.filter((project) => project.tags.includes(filter));
 
   // Get all unique tags
   const allTags = Array.from(

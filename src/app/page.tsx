@@ -42,15 +42,15 @@ export default function Home() {
 
                 {/* Role badges below the photo */}
                 <div className="flex flex-wrap justify-center lg:justify-start gap-3 mt-6">
-                  <span className="px-4 py-1 bg-white rounded-full text-sm font-medium shadow-md flex items-center">
-                    <span className="text-xl mr-2">👩‍💻</span> Web Developer
-                  </span>
-                  <span className="px-4 py-1 bg-primary text-white rounded-full text-sm font-medium shadow-md flex items-center">
-                    <span className="text-xl mr-2">👩‍🏫</span> Teacher
-                  </span>
-                  <span className="px-4 py-1 bg-white rounded-full text-sm font-medium shadow-md flex items-center">
-                    <span className="text-xl mr-2">🧩</span> Puzzle Lover
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl mr-2">W</span> Web Developer
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl mr-2">T</span> Teacher
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl mr-2">P</span> Puzzle Lover
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -98,11 +98,17 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.8 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
               >
-                <Link href="/playground" className="btn btn-primary">
-                  Explore Playground 🎮
+                <Link
+                  href="/playground"
+                  className="px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors text-center"
+                >
+                  Explore Playground
                 </Link>
-                <Link href="/projects" className="btn btn-outline">
-                  See My Work 💼
+                <Link
+                  href="/projects"
+                  className="px-6 py-3 bg-charcoal/10 text-charcoal rounded-lg hover:bg-charcoal/20 transition-colors text-center"
+                >
+                  See My Work
                 </Link>
               </motion.div>
             </motion.div>

@@ -150,36 +150,28 @@ export default function About() {
             <h2 className="text-2xl font-bold text-charcoal mb-6">
               Quick Facts
             </h2>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <span className="text-primary mr-2">📍</span>
-                <span className="text-charcoal/70">
-                  Based in Makati, Philippines
-                </span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">💻</span>
-                <span className="text-charcoal/70">
-                  Frontend developer specializing in React and Nextjs
-                </span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">👩‍🏫</span>
-                <span className="text-charcoal/70">
-                  3+ years of teaching experience
-                </span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">🌍</span>
-                <span className="text-charcoal/70">Can speak 2 languages</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-primary mr-2">📚</span>
-                <span className="text-charcoal/70">
-                  Always learning new technologies and life skills
-                </span>
-              </li>
-            </ul>
+            <div className="space-y-4">
+              <div className="flex items-center gap-2">
+                <span className="text-primary mr-2">L</span>
+                <span>Location</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary mr-2">W</span>
+                <span>Work</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary mr-2">T</span>
+                <span>Teaching</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary mr-2">G</span>
+                <span>Global</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-primary mr-2">B</span>
+                <span>Books</span>
+              </div>
+            </div>
           </motion.div>
         </div>
 

@@ -30,9 +30,12 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ title }) => {
           <FaMugHot className="inline-block" />
         </motion.div>
         <h1 className="text-4xl font-bold text-charcoal mb-4">{title}</h1>
-        <p className="text-xl text-charcoal/70 mb-8">
-          🎨 Something amazing is brewing here...
-        </p>
+        <div className="text-center">
+          <h2 className="text-2xl font-bold mb-4">Coming Soon</h2>
+          <p className="text-gray-600 dark:text-gray-300">
+            Something amazing is brewing here...
+          </p>
+        </div>
         <div className="flex items-center justify-center gap-2 text-charcoal/60">
           <FaCoffee className="animate-bounce" />
           <span className="text-sm">Brewing since 2024</span>
