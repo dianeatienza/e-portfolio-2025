@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import ReactConfetti from "react-confetti";
 
 // Define card types with programming concepts
 interface Card {
@@ -25,17 +26,35 @@ const PROGRAMMING_CARDS = [
 
 export default function MemoryGame() {
   const [cards, setCards] = useState<Card[]>([]);
-  const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
-  const [matchedPairs, setMatchedPairs] = useState<number>(0);
+  const [flippedCards, setFlippedCards] = useState<number[]>([]);
+  const [matchedPairs, setMatchedPairs] = useState<number[]>([]);
   const [moves, setMoves] = useState<number>(0);
   const [gameStarted, setGameStarted] = useState<boolean>(false);
   const [gameComplete, setGameComplete] = useState<boolean>(false);
   const [isClient, setIsClient] = useState(false);
   const [isResetting, setIsResetting] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
+  });
 
   // Set isClient to true when component mounts
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  // Update window size on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Initialize game
@@ -59,9 +78,9 @@ export default function MemoryGame() {
 
     // Reset all game state
     setGameComplete(false);
-    setMatchedPairs(0);
+    setMatchedPairs([]);
     setMoves(0);
-    setFlippedIndices([]);
+    setFlippedCards([]);
     setCards(cardPairs);
     setGameStarted(true);
     setIsResetting(false);
@@ -92,17 +111,17 @@ export default function MemoryGame() {
   const handleCardClick = (index: number) => {
     if (
       isResetting ||
-      flippedIndices.includes(index) ||
-      flippedIndices.length === 2 ||
+      flippedCards.includes(index) ||
+      flippedCards.length === 2 ||
       cards[index].isMatched ||
       !gameStarted
     ) {
       return;
     }
 
-    // Update flipped indices
-    const newFlippedIndices = [...flippedIndices, index];
-    setFlippedIndices(newFlippedIndices);
+    // Update flipped cards
+    const newFlippedCards = [...flippedCards, index];
+    setFlippedCards(newFlippedCards);
 
     // Update cards array to flip the clicked card
     const newCards = [...cards];
@@ -110,9 +129,9 @@ export default function MemoryGame() {
     setCards(newCards);
 
     // If this is the second card
-    if (newFlippedIndices.length === 2) {
+    if (newFlippedCards.length === 2) {
       setMoves((prev) => prev + 1);
-      const [firstIndex, secondIndex] = newFlippedIndices;
+      const [firstIndex, secondIndex] = newFlippedCards;
 
       // Check for match
       if (cards[firstIndex].content === cards[secondIndex].content) {
@@ -122,12 +141,15 @@ export default function MemoryGame() {
           matchedCards[firstIndex].isMatched = true;
           matchedCards[secondIndex].isMatched = true;
           setCards(matchedCards);
-          setFlippedIndices([]);
-          setMatchedPairs((prev) => prev + 1);
+          setFlippedCards([]);
+          setMatchedPairs((prev) => [...prev, firstIndex, secondIndex]);
 
           // Check if game is complete
-          if (matchedPairs + 1 === PROGRAMMING_CARDS.length) {
+          if (matchedPairs.length + 2 === cards.length) {
             setGameComplete(true);
+            setShowConfetti(true);
+            // Stop confetti after 5 seconds
+            setTimeout(() => setShowConfetti(false), 5000);
           }
         }, 500);
       } else {
@@ -137,11 +159,35 @@ export default function MemoryGame() {
           resetCards[firstIndex].isFlipped = false;
           resetCards[secondIndex].isFlipped = false;
           setCards(resetCards);
-          setFlippedIndices([]);
+          setFlippedCards([]);
         }, 1000);
       }
     }
   };
+
+  const checkForMatch = useCallback(() => {
+    if (flippedCards.length === 2) {
+      const [first, second] = flippedCards;
+      const isMatch = cards[first].content === cards[second].content;
+
+      if (isMatch) {
+        setMatchedPairs((prev) => [...prev, first, second]);
+        setFlippedCards([]);
+
+        // Check if all pairs are matched
+        if (matchedPairs.length + 2 === cards.length) {
+          setShowConfetti(true);
+          // Stop confetti after 5 seconds
+          setTimeout(() => setShowConfetti(false), 5000);
+        }
+      } else {
+        setTimeout(() => {
+          setFlippedCards([]);
+        }, 1000);
+      }
+      setMoves((prev) => prev + 1);
+    }
+  }, [flippedCards, cards, matchedPairs]);
 
   if (!isClient) {
     return null;
@@ -149,6 +195,14 @@ export default function MemoryGame() {
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">
+      {showConfetti && (
+        <ReactConfetti
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={200}
+        />
+      )}
       <div className="bg-white rounded-xl shadow-lg overflow-hidden">
         <div className="p-6">
           <h2 className="text-2xl font-bold text-charcoal mb-2">Memory Game</h2>
@@ -172,7 +226,7 @@ export default function MemoryGame() {
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-4">
                   <span className="text-primary font-medium">
-                    Pairs: {matchedPairs}/{PROGRAMMING_CARDS.length}
+                    Pairs: {matchedPairs.length}/{PROGRAMMING_CARDS.length}
                   </span>
                   <span className="text-charcoal/70">Moves: {moves}</span>
                 </div>
@@ -194,15 +248,13 @@ export default function MemoryGame() {
                   <motion.div
                     key={card.id}
                     className={`aspect-square cursor-pointer perspective-1000 ${
-                      flippedIndices.length === 2 || isResetting
+                      flippedCards.length === 2 || isResetting
                         ? "pointer-events-none"
                         : ""
                     }`}
                     onClick={() => handleCardClick(index)}
                     whileHover={
-                      card.isMatched ||
-                      flippedIndices.length === 2 ||
-                      isResetting
+                      card.isMatched || flippedCards.length === 2 || isResetting
                         ? {}
                         : { scale: 1.05 }
                     }

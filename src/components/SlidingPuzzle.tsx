@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion } from "framer-motion";
+import ReactConfetti from "react-confetti";
 
 type Difficulty = "easy" | "average" | "difficult";
 type PuzzleImage = "bini";
@@ -23,10 +24,28 @@ const SlidingPuzzle: React.FC = () => {
   const [tiles, setTiles] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
+  });
 
   const GRID_SIZE = GRID_SIZES[difficulty];
   const TOTAL_TILES = GRID_SIZE * GRID_SIZE;
   const currentImage: PuzzleImage = "bini";
+
+  // Update window size on resize
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const isSolvable = (tiles: number[]): boolean => {
     let inversions = 0;
@@ -114,6 +133,11 @@ const SlidingPuzzle: React.FC = () => {
       return tile === index;
     });
     setIsComplete(isComplete);
+    if (isComplete) {
+      setShowConfetti(true);
+      // Stop confetti after 5 seconds
+      setTimeout(() => setShowConfetti(false), 5000);
+    }
   };
 
   // Calculate the position for each tile's background image
@@ -129,6 +153,14 @@ const SlidingPuzzle: React.FC = () => {
 
   return (
     <div className="w-full max-w-6xl mx-auto">
+      {showConfetti && (
+        <ReactConfetti
+          width={windowSize.width}
+          height={windowSize.height}
+          recycle={false}
+          numberOfPieces={200}
+        />
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           {/* Controls */}
