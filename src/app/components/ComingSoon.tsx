@@ -38,7 +38,7 @@ const ComingSoon: React.FC<ComingSoonProps> = ({ title }) => {
         </div>
         <div className="flex items-center justify-center gap-2 text-charcoal/60">
           <FaCoffee className="animate-bounce" />
-          <span className="text-sm">Brewing since 2024</span>
+          <span className="text-sm">Brewing since 2025</span>
         </div>
       </motion.div>
     </div>

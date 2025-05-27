@@ -49,7 +49,7 @@ export default function Home() {
                     <span className="text-xl mr-2">|</span> Teacher
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl mr-2">|</span> Puzzle Lover
+                    <span className="text-xl mr-2">|</span> Rooted Dreamer
                   </div>
                 </div>
               </div>
@@ -69,7 +69,7 @@ export default function Home() {
                 className="mb-6"
               >
                 <span className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-                  Welcome to my portfolio
+                  Thanks for stopping by—here’s a glimpse into my world.
                 </span>
               </motion.div>
 
@@ -88,8 +88,8 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="text-lg sm:text-xl lg:text-2xl text-charcoal/80 mb-8 max-w-3xl mx-auto lg:mx-0"
               >
-                I combine my passion for coding and teaching to create
-                meaningful experiences and solutions.
+                Building digital experiences, nurturing growth, and staying
+                grounded in faith and creativity.
               </motion.p>
 
               <motion.div
@@ -130,8 +130,10 @@ export default function Home() {
               What I Do
             </h2>
             <p className="text-charcoal/70 max-w-2xl mx-auto text-base sm:text-lg">
-              I combine my passion for coding and teaching to create meaningful
-              experiences and solutions
+              My passion for coding and teaching drives me to create impactful
+              solutions and engaging experiences. Beyond the screen, you&apos;ll
+              find me with my camera, or enjoying a quiet moment of reflection,
+              always striving for deeper purpose.
             </p>
           </motion.div>
 
@@ -140,23 +142,21 @@ export default function Home() {
               {
                 title: "Web Development",
                 description:
-                  "Creating responsive, accessible, and performant web applications",
+                  "Crafting purposeful, responsive, and accessible web experiences.",
                 icon: "💻",
                 color: "bg-sky/10",
                 image: "/images/hero/lei-coding.JPG",
               },
               {
                 title: "Teaching",
-                description:
-                  "Sharing knowledge and inspiring the next generation of developers",
+                description: "Shaping minds in classrooms and across oceans.",
                 icon: "📚",
                 color: "bg-primary/10",
                 image: "/images/hero/lei-teaching.JPG",
               },
               {
                 title: "Everything in Between",
-                description:
-                  "Building interactive experiences that engage and delight users",
+                description: "Where creativity, curiosity, and soul take root.",
                 icon: "🎨",
                 color: "bg-coral/10",
                 image: "/images/hero/another-lei.jpg",
