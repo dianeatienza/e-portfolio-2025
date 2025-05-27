@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ReactConfetti from "react-confetti";
 
@@ -164,30 +164,6 @@ export default function MemoryGame() {
       }
     }
   };
-
-  const checkForMatch = useCallback(() => {
-    if (flippedCards.length === 2) {
-      const [first, second] = flippedCards;
-      const isMatch = cards[first].content === cards[second].content;
-
-      if (isMatch) {
-        setMatchedPairs((prev) => [...prev, first, second]);
-        setFlippedCards([]);
-
-        // Check if all pairs are matched
-        if (matchedPairs.length + 2 === cards.length) {
-          setShowConfetti(true);
-          // Stop confetti after 5 seconds
-          setTimeout(() => setShowConfetti(false), 5000);
-        }
-      } else {
-        setTimeout(() => {
-          setFlippedCards([]);
-        }, 1000);
-      }
-      setMoves((prev) => prev + 1);
-    }
-  }, [flippedCards, cards, matchedPairs]);
 
   if (!isClient) {
     return null;
