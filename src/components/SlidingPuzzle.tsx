@@ -81,7 +81,7 @@ const SlidingPuzzle: React.FC = () => {
 
   useEffect(() => {
     initializePuzzle();
-  }, [difficulty, initializePuzzle]);
+  }, [initializePuzzle]);
 
   const isAdjacent = (index1: number, index2: number): boolean => {
     const row1 = Math.floor(index1 / GRID_SIZE);

@@ -243,19 +243,19 @@ const WordSearch: React.FC = () => {
   );
 
   // Memoize the grid rendering to improve performance
-  const gridCells = useMemo(() => {
-    return grid.map((row, y) =>
-      row.map((cell, x) => (
+  const gridElements = useMemo(() => {
+    return grid.map((row, rowIndex) =>
+      row.map((cell, colIndex) => (
         <div
-          key={`${x}-${y}`}
+          key={`${rowIndex}-${colIndex}`}
           className={cn(
             "w-8 h-8 flex items-center justify-center text-lg font-bold cursor-pointer select-none",
             "border border-gray-200 dark:border-gray-700",
-            isCellSelected(x, y) && "bg-blue-500 text-white",
-            !isCellSelected(x, y) && "bg-white dark:bg-gray-800"
+            isCellSelected(colIndex, rowIndex) && "bg-blue-500 text-white",
+            !isCellSelected(colIndex, rowIndex) && "bg-white dark:bg-gray-800"
           )}
-          onMouseDown={() => handleMouseDown(x, y)}
-          onMouseEnter={() => handleMouseEnter(x, y)}
+          onMouseDown={() => handleMouseDown(colIndex, rowIndex)}
+          onMouseEnter={() => handleMouseEnter(colIndex, rowIndex)}
           onMouseUp={handleMouseUp}
         >
           {cell}
@@ -315,8 +315,8 @@ const WordSearch: React.FC = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-15 gap-1 mb-4 max-w-[600px] mx-auto">
-        {gridCells}
+      <div className="grid grid-cols-[repeat(15,minmax(0,1fr))] gap-1 mb-4 max-w-[600px] mx-auto">
+        {gridElements}
       </div>
 
       <div className="grid grid-cols-3 gap-2 max-w-[600px] mx-auto">
