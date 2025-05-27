@@ -151,25 +151,37 @@ export default function About() {
               Quick Facts
             </h2>
             <div className="space-y-4">
-              <div className="flex items-center gap-2">
-                <span className="text-primary mr-2">L</span>
-                <span>Location</span>
+              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-primary font-medium mb-2">Home Town</h3>
+                <p className="text-charcoal/80">Cuenca, Batangas</p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary mr-2">W</span>
-                <span>Work</span>
+              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-primary font-medium mb-2">Current Gig</h3>
+                <p className="text-charcoal/80">Youth Counselor</p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary mr-2">T</span>
-                <span>Teaching</span>
+              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-primary font-medium mb-2">
+                  Learning Curve (Tech)
+                </h3>
+                <p className="text-charcoal/80">Backend Development</p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary mr-2">G</span>
-                <span>Global</span>
+              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-primary font-medium mb-2">
+                  Learning Curve (Educ)
+                </h3>
+                <p className="text-charcoal/80">
+                  Gentle Discipline for Youth/Teens
+                </p>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-primary mr-2">B</span>
-                <span>Books</span>
+              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-primary font-medium mb-2">Big Dream</h3>
+                <p className="text-charcoal/80">
+                  To experience the world as a spiritual pilgrimage
+                </p>
+              </div>
+              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                <h3 className="text-primary font-medium mb-2">Go-To</h3>
+                <p className="text-charcoal/80">Camera, ramen, and ice cream</p>
               </div>
             </div>
           </motion.div>
