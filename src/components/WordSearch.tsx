@@ -281,6 +281,16 @@ const WordSearch: React.FC = () => {
     ));
   }, [foundWords]);
 
+  const resetGame = useCallback(() => {
+    setFoundWords([]);
+    setScore(0);
+    setSelectedCells([]);
+    setStartCell(null);
+    setIsSelecting(false);
+    setShowConfetti(false);
+    generateGrid();
+  }, [generateGrid]);
+
   return (
     <div className="w-full relative">
       {showConfetti && (
@@ -301,18 +311,32 @@ const WordSearch: React.FC = () => {
             <p className="text-gray-600 dark:text-gray-300">
               You&apos;ve found all the words!
             </p>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-600 dark:text-gray-300 mb-4">
               Final Score: {score}
             </p>
+            <button
+              onClick={resetGame}
+              className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors"
+            >
+              Play Again
+            </button>
           </div>
         </div>
       )}
 
-      <div className="mb-4">
-        <p className="text-gray-600 dark:text-gray-300">Score: {score}</p>
-        <p className="text-gray-600 dark:text-gray-300">
-          Found words: {foundWords.length}/{TECH_WORDS.length}
-        </p>
+      <div className="mb-4 flex justify-between items-center">
+        <div>
+          <p className="text-gray-600 dark:text-gray-300">Score: {score}</p>
+          <p className="text-gray-600 dark:text-gray-300">
+            Found words: {foundWords.length}/{TECH_WORDS.length}
+          </p>
+        </div>
+        <button
+          onClick={resetGame}
+          className="px-4 py-2 bg-charcoal/10 text-charcoal rounded-lg hover:bg-charcoal/20 transition-colors"
+        >
+          New Game
+        </button>
       </div>
 
       <div className="grid grid-cols-[repeat(15,minmax(0,1fr))] gap-1 mb-4 max-w-[600px] mx-auto">
