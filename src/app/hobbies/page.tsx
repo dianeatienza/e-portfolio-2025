@@ -118,12 +118,12 @@ const galleries = {
     "/images/hobbies/gallery/placeholder-2.webp",
     "/images/hobbies/gallery/placeholder-2.webp",
   ],
-  resin: [
+  "resin-art": [
     "/images/hobbies/gallery/placeholder-1.webp",
     "/images/hobbies/gallery/placeholder-1.webp",
     "/images/hobbies/gallery/placeholder-1.webp",
   ],
-  concerts: [
+  "concerts-theater": [
     "/images/hobbies/gallery/placeholder-1.webp",
     "/images/hobbies/gallery/placeholder-1.webp",
     "/images/hobbies/gallery/placeholder-1.webp",
@@ -133,7 +133,7 @@ const galleries = {
     "/images/hobbies/gallery/placeholder-2.webp",
     "/images/hobbies/gallery/placeholder-2.webp",
   ],
-  food: [
+  "culinary-adventures": [
     "/images/hobbies/gallery/placeholder-2.webp",
     "/images/hobbies/gallery/placeholder-2.webp",
     "/images/hobbies/gallery/placeholder-2.webp",
@@ -143,30 +143,49 @@ const galleries = {
 export default function HobbiesPage() {
   const [selectedHobby, setSelectedHobby] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageError, setImageError] = useState(false);
 
   const handleHobbyClick = (hobby: string) => {
-    setSelectedHobby(hobby);
+    const galleryKey = hobby
+      .toLowerCase()
+      .replace(/&/g, "-")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
+    console.log("Hobby clicked:", hobby);
+    console.log("Converted key:", galleryKey);
+    console.log("Available gallery keys:", Object.keys(galleries));
+    setSelectedHobby(galleryKey);
     setCurrentImageIndex(0);
+    setImageError(false);
   };
 
   const handleCloseModal = () => {
     setSelectedHobby(null);
+    setImageError(false);
   };
 
   const handleNextImage = () => {
     if (selectedHobby) {
       const gallery = galleries[selectedHobby as keyof typeof galleries];
-      setCurrentImageIndex((prev) => (prev + 1) % gallery.length);
+      if (gallery) {
+        setCurrentImageIndex((prev) => (prev + 1) % gallery.length);
+      }
     }
   };
 
   const handlePrevImage = () => {
     if (selectedHobby) {
       const gallery = galleries[selectedHobby as keyof typeof galleries];
-      setCurrentImageIndex(
-        (prev) => (prev - 1 + gallery.length) % gallery.length
-      );
+      if (gallery) {
+        setCurrentImageIndex(
+          (prev) => (prev - 1 + gallery.length) % gallery.length
+        );
+      }
     }
+  };
+
+  const handleImageError = () => {
+    setImageError(true);
   };
 
   return (
@@ -272,28 +291,45 @@ export default function HobbiesPage() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="relative h-[60vh]">
-                <Image
-                  src={
-                    galleries[selectedHobby as keyof typeof galleries][
-                      currentImageIndex
-                    ]
-                  }
-                  alt={`${selectedHobby} gallery image`}
-                  fill
-                  className="object-contain"
-                />
-                <button
-                  onClick={handlePrevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
-                >
-                  ←
-                </button>
-                <button
-                  onClick={handleNextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
-                >
-                  →
-                </button>
+                {!imageError &&
+                galleries[selectedHobby as keyof typeof galleries] ? (
+                  <Image
+                    src={
+                      galleries[selectedHobby as keyof typeof galleries][
+                        currentImageIndex
+                      ]
+                    }
+                    alt={`${selectedHobby} gallery image`}
+                    fill
+                    className="object-contain"
+                    onError={handleImageError}
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-charcoal/5">
+                    <p className="text-charcoal/70">
+                      {!galleries[selectedHobby as keyof typeof galleries]
+                        ? `Gallery not found for: ${selectedHobby}`
+                        : "Gallery images coming soon!"}
+                    </p>
+                  </div>
+                )}
+                {!imageError &&
+                  galleries[selectedHobby as keyof typeof galleries] && (
+                    <>
+                      <button
+                        onClick={handlePrevImage}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
+                      >
+                        ←
+                      </button>
+                      <button
+                        onClick={handleNextImage}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full hover:bg-white transition-colors"
+                      >
+                        →
+                      </button>
+                    </>
+                  )}
               </div>
               <div className="p-6">
                 <div className="flex justify-between items-center mb-4">
@@ -301,8 +337,10 @@ export default function HobbiesPage() {
                     {
                       hobbies.find(
                         (h) =>
-                          h.title.toLowerCase().replace(/\s+/g, "-") ===
-                          selectedHobby
+                          h.title
+                            .toLowerCase()
+                            .replace(/\s+/g, "-")
+                            .replace(/&/g, "-") === selectedHobby
                       )?.title
                     }
                   </h3>
@@ -313,28 +351,32 @@ export default function HobbiesPage() {
                     Close
                   </button>
                 </div>
-                <div className="flex gap-2 overflow-x-auto pb-2">
-                  {galleries[selectedHobby as keyof typeof galleries].map(
-                    (image, index) => (
-                      <button
-                        key={image}
-                        onClick={() => setCurrentImageIndex(index)}
-                        className={`relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden ${
-                          index === currentImageIndex
-                            ? "ring-2 ring-primary"
-                            : ""
-                        }`}
-                      >
-                        <Image
-                          src={image}
-                          alt={`Thumbnail ${index + 1}`}
-                          fill
-                          className="object-cover"
-                        />
-                      </button>
-                    )
+                {!imageError &&
+                  galleries[selectedHobby as keyof typeof galleries] && (
+                    <div className="flex gap-2 overflow-x-auto pb-2">
+                      {galleries[selectedHobby as keyof typeof galleries].map(
+                        (image, index) => (
+                          <button
+                            key={image}
+                            onClick={() => setCurrentImageIndex(index)}
+                            className={`relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden ${
+                              index === currentImageIndex
+                                ? "ring-2 ring-primary"
+                                : ""
+                            }`}
+                          >
+                            <Image
+                              src={image}
+                              alt={`Thumbnail ${index + 1}`}
+                              fill
+                              className="object-cover"
+                              onError={handleImageError}
+                            />
+                          </button>
+                        )
+                      )}
+                    </div>
                   )}
-                </div>
               </div>
             </motion.div>
           </motion.div>
