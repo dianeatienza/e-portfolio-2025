@@ -55,10 +55,10 @@ const hobbies = [
     image: "/images/hobbies/concerts.webp",
   },
   {
-    title: "Baking",
+    title: "Baking and Cooking",
     emoji: "🍰",
     description:
-      "Baking brings me calm, joy, and a sweet sense of accomplishment. Whether it's kneading dough or decorating cakes, the process is as comforting as the treats themselves. It's my way of creating warmth—both in the kitchen and in the hearts of those I share it with.",
+      "Baking and cooking bring me calm, joy, and a sweet sense of accomplishment. Whether it's kneading dough or decorating cakes, the process is as comforting as the treats themselves. It's my way of creating warmth—both in the kitchen and in the hearts of those I share it with.",
     image: "/images/hobbies/baking.webp",
   },
   {
@@ -94,49 +94,49 @@ const itemVariants = {
 // Gallery images for each hobby
 const galleries = {
   planting: [
-    "/images/hobbies/gallery/placeholder-1.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-1.webp",
+    "/images/hobbies/gallery/sample-image1.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image1.jpg",
   ],
   music: [
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-1.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image1.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
   ],
   photography: [
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
   ],
   travel: [
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
   ],
   archery: [
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
   ],
   "resin-art": [
-    "/images/hobbies/gallery/placeholder-1.webp",
-    "/images/hobbies/gallery/placeholder-1.webp",
-    "/images/hobbies/gallery/placeholder-1.webp",
+    "/images/hobbies/gallery/sample-image1.jpg",
+    "/images/hobbies/gallery/sample-image1.jpg",
+    "/images/hobbies/gallery/sample-image1.jpg",
   ],
   "concerts-theater": [
-    "/images/hobbies/gallery/placeholder-1.webp",
-    "/images/hobbies/gallery/placeholder-1.webp",
-    "/images/hobbies/gallery/placeholder-1.webp",
+    "/images/hobbies/gallery/sample-image1.jpg",
+    "/images/hobbies/gallery/sample-image1.jpg",
+    "/images/hobbies/gallery/sample-image1.jpg",
   ],
-  baking: [
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
+  "baking-and-cooking": [
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
   ],
   "culinary-adventures": [
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
-    "/images/hobbies/gallery/placeholder-2.webp",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
+    "/images/hobbies/gallery/sample-image3.jpg",
   ],
 };
 
@@ -207,7 +207,7 @@ export default function HobbiesPage() {
             transition={{ duration: 0.5 }}
             className="text-4xl md:text-6xl font-bold mb-4"
           >
-            My Hobbies
+            My World Outside the Screen and Classroom
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

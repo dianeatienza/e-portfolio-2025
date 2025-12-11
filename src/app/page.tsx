@@ -49,7 +49,7 @@ export default function Home() {
                     <span className="text-xl mr-2">|</span> Teacher
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-xl mr-2">|</span> Rooted Dreamer
+                    <span className="text-xl mr-2">|</span> Youth Staff
                   </div>
                 </div>
               </div>
